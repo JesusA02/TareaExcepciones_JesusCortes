@@ -77,8 +77,9 @@ public class Excepcion implements ActionListener{
                 }
                 JOptionPane.showMessageDialog(ventana, "Presionó los botones en el orden correcto");
             }
+
             
-        }   
+        }  
         catch(Exception a){
                 JOptionPane.showMessageDialog(ventana, "Presionó el boton incorrecto");
                 contador = 0;
