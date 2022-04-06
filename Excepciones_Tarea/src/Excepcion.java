@@ -1,6 +1,5 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -13,6 +12,8 @@ import java.awt.event.*;
 public class Excepcion implements ActionListener{
     JFrame ventana;
 
+    int contador = 0;
+
     JButton boton1;
     JButton boton2;
     JButton boton3;
@@ -21,7 +22,7 @@ public class Excepcion implements ActionListener{
 
     public Excepcion(){
         ventana = new JFrame("Manejo de Excepciones");
-        //ventana.setSize(1000, 1000);
+        ventana.setPreferredSize(new Dimension(500,100));
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 
@@ -50,27 +51,38 @@ public class Excepcion implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        int contador = 0;
-        while(contador == 3){
-            try{
-                if(e.getSource().equals(boton1)){
-                    contador +=1;
-                    System.out.println("Se precionó el  primer boton ");
-                    if(e.getSource().equals(boton2)){
-                        contador +=1;
-                        System.out.println("Se precionó el segundo boton");
-
-                        if(e.getSource().equals(boton3)){
-                            contador +=1;
-                            System.out.println("Se precionó el tercer boton");
-                        }
-                    }
+        
+        try{
+            if(e.getSource().equals(boton1)){
+                contador +=1;
+                System.out.println("Se precionó el  primer boton ");
+                if(contador != 1){
+                    throw new Exception();
                 }
+                   
             }
-            catch(Exception a){
+            else if(e.getSource().equals(boton2)){
+                contador +=1;
+                System.out.println("Se precionó el  segundo boton ");
+                if(contador != 2){
+                    throw new Exception();
+                }
+                   
+            }
+            else if(e.getSource().equals(boton3)){
+                contador +=1;
+                System.out.println("Se precionó el  tercer boton ");
+                if(contador != 3){
+                    throw new Exception();
+                }
+                JOptionPane.showMessageDialog(ventana, "Presionó los botones en el orden correcto");
+            }
+            
+        }   
+        catch(Exception a){
                 JOptionPane.showMessageDialog(ventana, "Presionó el boton incorrecto");
-            }
-    }
+                contador = 0;
+        }
         
     }
 
